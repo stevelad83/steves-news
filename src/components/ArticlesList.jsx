@@ -5,11 +5,17 @@ class ArticlesList extends Component {
   state = { articles: [] };
 
   componentDidMount() {
-    console.log(this.props.topic);
-    const { article_id } = this.props;
-    getArticles(article_id).then((articles) => {
+    getArticles(this.props.topic).then((articles) => {
       this.setState({ articles });
     });
+  }
+
+  componentDidUpdate(previousProps, previousState) {
+    if (previousProps.topic !== this.props.topic) {
+      getArticles(this.props.topic).then((articles) => {
+        this.setState({ articles });
+      });
+    }
   }
   render() {
     const { articles } = this.state;

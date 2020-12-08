@@ -10,8 +10,16 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (article_id) => {
-  return stevesNewsApi.get("/articles").then(({ data }) => {
-    return data.articles;
+export const getArticles = (topic) => {
+  return stevesNewsApi
+    .get("/articles", { params: { topic: topic } })
+    .then(({ data }) => {
+      return data.articles;
+    });
+};
+
+export const getSingleArticle = (article_id) => {
+  return stevesNewsApi.get(`/articles/${article_id}`).then(({ data }) => {
+    return data.article;
   });
 };
