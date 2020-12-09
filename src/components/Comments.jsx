@@ -30,16 +30,23 @@ class Comments extends Component {
 
   render() {
     const { comments, hasError, errorMessage, isLoading } = this.state;
+    console.log(comments, "<=====");
     if (isLoading) {
       return <Loading />;
     } else if (hasError) {
       return <p>{errorMessage}</p>;
     } else {
       return (
-        <div>
-          <h2>{comments.comment_id}</h2>
-          <p>Comments {comments.body}</p>
-        </div>
+        <main>
+          {comments.map((comment) => (
+            <p>{comment.body}</p>
+            // <li key={comment.body}>
+
+            //     <h2>{article.title}</h2>
+
+            // </li>
+          ))}
+        </main>
       );
     }
   }
