@@ -19,9 +19,8 @@ class Nav extends Component {
         <h2>{description}</h2>
         <ul>
           {topics.map((topic) => {
-            console.log(topic);
             return (
-              <Link to={`/${topic.slug}`} key={topic.slug}>
+              <Link to={`/topic/${topic.slug}`} key={topic.slug}>
                 <h2>{topic.slug}</h2>
               </Link>
             );

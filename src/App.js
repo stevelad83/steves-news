@@ -13,8 +13,8 @@ function App() {
       <Nav />
       <Router>
         <ArticlesList path="/" />
-        <ArticlesList path="/:topic" />
-        <SingleArticle path="/articles/:article_id" />
+        <ArticlesList path="topic/:topic" />
+        <SingleArticle path="/article/:article_id" />
         <ErrorMessage default errorMessage="Page not found!😕" />
       </Router>
     </div>

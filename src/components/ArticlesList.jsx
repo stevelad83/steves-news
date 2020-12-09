@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { getArticles } from "../api";
+import Loading from "./Loading";
+import { Link } from "@reach/router";
 
 class ArticlesList extends Component {
   state = { articles: [] };
@@ -18,19 +20,25 @@ class ArticlesList extends Component {
     }
   }
   render() {
-    const { articles } = this.state;
+    const { articles, isLoading } = this.state;
     const { article_id } = this.props;
 
     return (
       <main>
         <h2>{article_id}</h2>
-        <ul>
-          {articles.map((article) => (
-            <li key={article.article_id}>
-              <h2>{article.title}</h2>
-            </li>
-          ))}
-        </ul>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <ul>
+            {articles.map((article) => (
+              <li key={article.article_id}>
+                <Link to={`/article/${article.article_id}`}>
+                  <h2>{article.title}</h2>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </main>
     );
   }
