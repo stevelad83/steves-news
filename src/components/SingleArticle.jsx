@@ -3,6 +3,7 @@ import { getSingleArticle } from "../api";
 import Loading from "./Loading";
 import Voter from "./Voter";
 import ErrorMessage from "./ErrorMessage";
+import { increaseVote } from "../api";
 
 class SingleArticle extends Component {
   state = {
@@ -28,24 +29,24 @@ class SingleArticle extends Component {
         });
       });
   }
-  // handleClick = (event) => {
-  //   increaseVote(this.state.article.article_id).catch((error) => {
-  //     const {
-  //       response: { status },
-  //     } = error;
-  //     this.setState((currentState) => {
-  //       const newState = {
-  //         isLoading: false,
-  //         hasVoted: true,
-  //         article: {
-  //           ...currentState.article,
-  //           votes: currentState.article.votes + 1,
-  //         },
-  //       };
-  //       return newState;
-  //     });
-  //   });
-  // };
+  handleClick = (event) => {
+    increaseVote(this.state.article.article_id).catch((error) => {
+      const {
+        response: { status },
+      } = error;
+      this.setState((currentState) => {
+        const newState = {
+          isLoading: false,
+          hasVoted: true,
+          article: {
+            ...currentState.article,
+            votes: currentState.article.votes + 1,
+          },
+        };
+        return newState;
+      });
+    });
+  };
   render() {
     const { article, hasError, errorMessage, isLoading } = this.state;
     if (isLoading) {
@@ -65,7 +66,7 @@ class SingleArticle extends Component {
 
           <div>
             <Voter votes={article.votes} article_id={article.article_id} />
-            <p>🗳️Votes🗳️: {article.votes}</p>
+
             <p>Comment count: {article.comment_count}</p>
           </div>
         </div>

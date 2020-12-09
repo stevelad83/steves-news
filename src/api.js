@@ -20,6 +20,20 @@ export const getArticles = (topic) => {
 
 export const getSingleArticle = (article_id) => {
   return stevesNewsApi.get(`/articles/${article_id}`).then(({ data }) => {
+    console.log(data);
     return data.article;
   });
+};
+
+export const getCommentsByArticleId = (article_id) => {
+  return stevesNewsApi
+    .get(`/articles/${article_id}/comments`)
+    .then(({ data }) => {
+      console.log(data);
+      return data.comments;
+    });
+};
+
+export const increaseVote = (article_id) => {
+  return stevesNewsApi.patch(`/article/${article_id}`, { vote: 1 });
 };

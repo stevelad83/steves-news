@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import ArticlesList from "./components/ArticlesList";
 import SingleArticle from "./components/SingleArticle";
 import ErrorMessage from "./components/ErrorMessage";
+import Comments from "./components/Comments";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <ArticlesList path="/" />
         <ArticlesList path="topic/:topic" />
         <SingleArticle path="/article/:article_id" />
+        <Comments path="/articles/:article_id/comments" />
         <ErrorMessage default errorMessage="Page not found!😕" />
       </Router>
     </div>
