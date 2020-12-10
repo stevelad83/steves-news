@@ -30,7 +30,6 @@ class Comments extends Component {
 
   render() {
     const { comments, hasError, errorMessage, isLoading } = this.state;
-    console.log(comments, "<=====");
     if (isLoading) {
       return <Loading />;
     } else if (hasError) {

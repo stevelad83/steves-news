@@ -11,10 +11,12 @@ class Voter extends Component {
   };
   render() {
     const { votes } = this.props;
-    const { vote_count } = this.state;
+    const { vote_count, hasVoted } = this.state;
     return (
       <div>
-        <button onClick={this.handleClick}>Love it!</button>
+        <button onClick={this.handleClick} disabled={hasVoted}>
+          Love it!
+        </button>
         <p>🗳️Votes🗳️:{votes + vote_count}</p>
       </div>
     );

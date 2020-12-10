@@ -10,9 +10,9 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (topic) => {
+export const getArticles = (topic, sort_by, order) => {
   return stevesNewsApi
-    .get("/articles", { params: { topic: topic } })
+    .get("/articles", { params: { topic: topic, limit: 20, sort_by, order } })
     .then(({ data }) => {
       return data.articles;
     });
@@ -20,7 +20,6 @@ export const getArticles = (topic) => {
 
 export const getSingleArticle = (article_id) => {
   return stevesNewsApi.get(`/articles/${article_id}`).then(({ data }) => {
-    console.log(data);
     return data.article;
   });
 };
@@ -35,5 +34,5 @@ export const getCommentsByArticleId = (article_id) => {
 };
 
 export const increaseVote = (article_id) => {
-  return stevesNewsApi.patch(`/article/${article_id}`, { vote: 1 });
+  return stevesNewsApi.patch(`/articles/${article_id}`, { vote: 1 });
 };

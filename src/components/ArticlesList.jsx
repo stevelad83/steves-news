@@ -4,11 +4,11 @@ import Loading from "./Loading";
 import { Link } from "@reach/router";
 
 class ArticlesList extends Component {
-  state = { articles: [] };
+  state = { articles: [], isLoading: true, hasError: false, errorMessage: "" };
 
   componentDidMount() {
     getArticles(this.props.topic).then((articles) => {
-      this.setState({ articles });
+      this.setState({ articles, isLoading: false });
     });
   }
 
@@ -35,6 +35,8 @@ class ArticlesList extends Component {
                 <Link to={`/article/${article.article_id}`}>
                   <h2>{article.title}</h2>
                 </Link>
+                <p>Author: {article.author}</p>
+                <p>Votes:{article.votes}</p>
               </li>
             ))}
           </ul>

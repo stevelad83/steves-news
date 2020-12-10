@@ -55,7 +55,7 @@ class SingleArticle extends Component {
       return <p>{errorMessage}</p>;
     } else {
       return (
-        <div>
+        <article>
           <h2>{article.title}</h2>
           <p>
             Written by {article.author} on {article.created_at}
@@ -69,7 +69,7 @@ class SingleArticle extends Component {
 
             <p>Comment count: {article.comment_count}</p>
           </div>
-        </div>
+        </article>
       );
     }
   }
