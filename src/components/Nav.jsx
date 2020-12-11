@@ -32,7 +32,7 @@ class Nav extends Component {
       return <p>{errorMessage}</p>;
     } else {
       return (
-        <nav>
+        <nav className="Nav">
           <h2>{description}</h2>
           <ul>
             {topics.map((topic) => {

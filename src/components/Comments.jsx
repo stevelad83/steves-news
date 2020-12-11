@@ -14,7 +14,7 @@ class Comments extends Component {
   componentDidMount() {
     getCommentsByArticleId(this.props.article_id)
       .then((comments) => {
-        this.setState({ comments, isLoading: false });
+        this.setState({ comments: comments, isLoading: false });
       })
       .catch((error) => {
         const {
@@ -38,12 +38,7 @@ class Comments extends Component {
       return (
         <main>
           {comments.map((comment) => (
-            <p>{comment.body}</p>
-            // <li key={comment.body}>
-
-            //     <h2>{article.title}</h2>
-
-            // </li>
+            <p key={comment.comment_id}>{comment.body}</p>
           ))}
         </main>
       );

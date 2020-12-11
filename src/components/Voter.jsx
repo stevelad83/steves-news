@@ -6,7 +6,11 @@ class Voter extends Component {
 
   handleClick = (event) => {
     const { article_id } = this.props;
-    increaseVote(article_id);
+    increaseVote(article_id).catch((error) => {
+      const {
+        response: { status },
+      } = error;
+    });
     this.setState({ vote_count: 1, hasVoted: true });
   };
   render() {

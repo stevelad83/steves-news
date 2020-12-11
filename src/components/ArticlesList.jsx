@@ -4,15 +4,33 @@ import Loading from "./Loading";
 import { Link } from "@reach/router";
 
 class ArticlesList extends Component {
-  state = { articles: [], isLoading: true, hasError: false, errorMessage: "" };
+  state = {
+    articles: [],
+    isLoading: true,
+    hasError: false,
+    errorMessage: "",
+    sort_by: "article_id",
+    order: "asc",
+  };
 
   componentDidMount() {
-    getArticles(this.props.topic).then((articles) => {
-      this.setState({ articles, isLoading: false });
-    });
+    getArticles(this.props.topic)
+      .then((articles) => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch((error) => {
+        const {
+          response: { status },
+        } = error;
+        this.setState({
+          hasError: true,
+          isLoading: false,
+          errorMessage: `Article not found...${status}!`,
+        });
+      });
   }
 
-  componentDidUpdate(previousProps, previousState) {
+  componentDidUpdate(previousProps) {
     if (previousProps.topic !== this.props.topic) {
       getArticles(this.props.topic).then((articles) => {
         this.setState({ articles });
@@ -24,7 +42,7 @@ class ArticlesList extends Component {
     const { article_id } = this.props;
 
     return (
-      <main>
+      <main className="biglist">
         <h2>{article_id}</h2>
         {isLoading ? (
           <Loading />

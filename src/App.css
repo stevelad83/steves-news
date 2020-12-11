@@ -3,6 +3,21 @@
   margin: 0, auto;
 }
 
+/* .Nav {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+} */
+li {
+  padding: 2rem;
+  margin: 1 rem;
+  list-style: none;
+  border: solid, 10px;
+  border-radius: 5px;
+  border-color: black;
+}
+
 .App-header {
   background-color: #0a48c5;
   min-height: 100vh;
@@ -16,4 +31,8 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.biglist {
+  background-color: burlywood;
 }

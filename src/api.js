@@ -28,11 +28,10 @@ export const getCommentsByArticleId = (article_id) => {
   return stevesNewsApi
     .get(`/articles/${article_id}/comments`)
     .then(({ data }) => {
-      console.log(data);
       return data.comments;
     });
 };
 
 export const increaseVote = (article_id) => {
-  return stevesNewsApi.patch(`/articles/${article_id}`, { vote: 1 });
+  return stevesNewsApi.patch(`/articles/${article_id}`, { inc_votes: 1 });
 };
